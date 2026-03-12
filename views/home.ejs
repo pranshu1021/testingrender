@@ -4,9 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HomePage</title>
+    <style>
+        table,td,th{
+            border: solid 2px black;
+        }
+    </style>
 </head>
 <body>
     <h1>Hey, This is HomePage</h1>
-    
+    <hr>
+        <form method="post" action="/">
+        <input placeholder="Enter Id" name="id">
+        <input placeholder="Enter Name" name="name">
+        <input placeholder="Enter age" name="age">
+        <button>Add User</button>
+        </form>
+    <hr>
+
+
+    <table>
+        <tr>
+        <th>
+            id
+        </th>
+        <th>
+            Username
+        </th>
+        </tr>
+        
+            <% for( user of result) { %>
+                <tr>
+                <td>
+                    <%= user.id %>
+                </td>
+                <td>
+                    <%= user.username %>
+                </td>
+                <td>
+                    <%= user.age %>
+                </td>
+                </tr>
+            <%   }%>
+    </table>
+        <form method="get" action="/">
+        <button>Back to HomePage</button>
+    </form>
 </body>
 </html>

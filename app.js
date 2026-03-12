@@ -18,13 +18,16 @@ const db = mysql.createConnection({
     port: process.env.MYSQLPORT
 });
 
-db.query("SELECT * FROM users",(err,result)=>{
-    if(err){
-        console.log(err);
-        return res.send("Database error");
-    }
-    res.render("home.ejs",{result});
-})
+app.get("/", (req, res) => {
+    db.query("SELECT * FROM users", (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.send("Database error");
+        }
+
+        res.render("home.ejs", { result });
+    });
+});
 
 app.post("/",(req,res)=>{
     let {id,name,age} = req.body;

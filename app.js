@@ -1,8 +1,8 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const mysql = require("mysql2");
 const path= require("path");
-
 const port = process.env.PORT || 3000;
 
 app.set("view engine","ejs");
@@ -18,11 +18,13 @@ const db = mysql.createConnection({
     database: process.env.MYSQLDATABASE,
     port: process.env.MYSQLPORT
 });
-
 app.get("/",(req,res)=>{
-    res.render("home.ejs");
+    db.query("SELECT * FROM users",(err,result)=>{
+        console.log(result)
+        res.render("home.ejs",{result});
+    })
+    
 })
-
 app.listen(port,()=>{
     console.log(`listening to port ${port}`);
 });

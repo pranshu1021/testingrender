@@ -19,7 +19,7 @@ const db = mysql.createConnection({
     port: process.env.MYSQLPORT
 });
 
-app.get("/home",(req,res)=>{
+app.get("/",(req,res)=>{
     res.render("home.ejs");
 })
 

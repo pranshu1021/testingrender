@@ -38,8 +38,9 @@ nav{
     border-top:1px solid rgb(233,233,199);
     border-bottom:1px solid rgb(233,233,199);
 }
+
 .navbtn{
-    background-color: red;
+
     text-decoration:none;
     color:#23272C;
     background-color:rgb(233,233,199);
@@ -48,19 +49,77 @@ nav{
     font-weight:600;
     transition:0.2s;
 }
+
 .navbtn:hover{
     background-color:rgb(189, 189, 152);
 }
 
 .navContent{
     display:flex;
+    justify-content: space-between;
+
     align-items:center;
     gap:10px;
     padding:10px;
 }
+.logostuff{
+    justify-content: flex-start;
+
+    display: flex;
+
+}
+.navbuttonContainer{
+    justify-content: flex-end;
+
+}
 .noSelect{
     user-select: none;
+    
 }
 nav h1{
+    
     color:rgb(233,233,199);
+}
+.profile-container{
+
+}
+.profile-container p{
+    color: rgb(233,233,199);
+    border: 3px solid ;
+    font-size: 20px;
+    padding: 10px;
+    border-color: rgb(233,233,199);
+    border-radius: 10px;
+}
+
+
+
+/* NAVMENU CSS*/
+.navMenu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;              /* buttons ke beech spacing */
+    padding: 5px 0;        /* height ki jagah padding use karo */
+    flex-wrap: wrap;
+}
+
+.navMenubtn{
+   
+    
+    background-color: rgb(233,233,199);
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: 0.2s;
+    font-size: 18px;
+    min-width: 180px;
+}
+.navMenubtn a{
+ text-decoration: none;
+ color: #23272C;
+}
+.navMenubtn:hover{
+    background-color: rgb(189,189,152);
+    transform: translateY(-2px); /* thoda modern hover effect */
 }

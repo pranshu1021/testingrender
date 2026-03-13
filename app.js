@@ -24,10 +24,16 @@ app.get("/", (req, res) => {
             console.log(err);
             return res.send("Database error");
         }
-        res.render("home.ejs", { result });
+        res.render("home.ejs", {result,page:"home"});
     });
 });
+app.get("/",(req,res)=>{
+    res.redirect("/");
+})
 
+app.get("/sign-up",(req,res)=>{
+    res.render("signup",{page:"signup"})
+})
 app.post("/",(req,res)=>{
     let {id,name,age} = req.body;
 
@@ -44,6 +50,7 @@ app.post("/",(req,res)=>{
         }
     );
 });
+
 app.listen(port,()=>{
     console.log(`listening to port ${port}`);
 });

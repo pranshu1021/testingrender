@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+table,tr,th,td{
+    border: 1px solid black;
+}
+
+#userimg img{
+    border-radius: 100%;
+    height: 200px;
+    width: 200px;
+    object-fit: fill;
+}
+
+#userimg{
+    height: 280px;
+    width: 200px;
+    border: 2px solid black;
+  
+}
+
+#userdata{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+
+</style>
+<body>
+    <h1>All the data is present here:</h1>
+  
+       
+    <div id="userdata">
+     <%  for(let user of arr){%>
+  <div id="userimg">
+    <img src="<%=user.url %>" alt="">
+ <%=user.name %>
+ <%=user.email %>
+ <%=user.password %>
+  </div>
+<% } %>
+   </div>
+    <a href="/">Go to add more data</a>
+</body>
+</html>

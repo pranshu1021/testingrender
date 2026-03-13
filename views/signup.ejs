@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("partials/head") %>
+<body>
+    <%- include("partials/navbar") %>
+    <div class="signup-card">
+    <h1>HEllo i'm index page.</h1>
+    <form action="/submit" method="post">
+        <input type="text" placeholder="Enter your name:" name="name" id="name" required>
+        <input type="text" placeholder="Enter your email:" name="email" required>
+        <input type="text" placeholder="Enter your password" name="password" required>
+        <input type="text" placeholder="Enter the image url" name="url">
+        <button>submit</button>
+    </form>
+    <a href="/Read">Go to see users data</a>
+    </div>
+</body>
+</html>

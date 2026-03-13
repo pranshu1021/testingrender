@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql2");
 const path= require("path");
-const port = process.env.PORT || 3000;
+const port = process.env.MYSQLPORT;
 
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));

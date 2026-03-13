@@ -24,7 +24,6 @@ app.get("/", (req, res) => {
             console.log(err);
             return res.send("Database error");
         }
-
         res.render("home.ejs", { result });
     });
 });
@@ -40,7 +39,6 @@ app.post("/",(req,res)=>{
                 console.log(err);
                 return res.send("Insert error");
             }
-
             console.log("New user added");
             res.redirect("/");
         }

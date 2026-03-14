@@ -123,3 +123,104 @@ nav h1{
     background-color: rgb(189,189,152);
     transform: translateY(-2px); /* thoda modern hover effect */
 }
+
+/* SIGNUP PAGE CSS */
+.form-grp{
+    /* display: flex;
+    justify-content: space-between;
+    gap:100px */
+    
+display:flex;
+flex-direction:column;
+gap:8px;
+
+}
+
+.signup-card{
+    background: linear-gradient(135deg,  rgb(27,27,27),rgb(46, 46, 39), rgb(44, 43, 43));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    margin:5% auto;
+    padding:20px;
+    font-size: 25px;
+    border: 5px solid ;
+    border-color: rgb(189,189,152);
+    border-radius:12px;
+box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+.form-grp select{
+    background-color: #1b1b1b;
+    color: rgb(189,189,152);
+    border:1px solid gold;
+}
+
+.form-grp option{
+    background-color:#1b1b1b;
+    color:rgb(189,189,152);
+}
+
+
+.signup-card form{
+        display: flex;
+    flex-direction: column;
+    width: auto;
+    color:rgb(189,189,152);
+    gap:20px;
+}
+.register{
+width:200px;
+margin-top:30px;
+align-self:center;
+font-size:18px;
+}
+
+.form-grp input,
+.form-grp select,
+.form-grp textarea{
+    color: aliceblue;
+    font-size:18px;
+    background-color:transparent;
+    border:1px solid rgb(189,189,152);
+    padding:8px 10px;
+    border-radius:6px;
+}
+.form-grp input:focus,
+.form-grp textarea:focus,
+.form-grp select:focus{
+outline:none;
+border:1px solid gold;
+box-shadow:0 0 8px rgba(255,215,0,0.4);
+}
+.logostuff a{
+    text-decoration: none;
+    display: flex;
+}
+
+/*PROFILE BOX CSS*/
+.profilebox{
+    border: 2px solid rgb(189,189,152) ;
+    background: linear-gradient(135deg,  rgb(27,27,27),rgb(46, 46, 39), rgb(44, 43, 43));
+    display: flex;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    
+}
+.profilebox img{
+    border-radius: 100%;
+    height: 70px;
+    width: 70px;
+}
+.logout{
+    min-height: 40px;
+}
+.profilebox p{
+    margin: 0px 10px;
+    color: rgb(189,189,152);
+    font-size: 23px;
+    font-weight: 800;
+}

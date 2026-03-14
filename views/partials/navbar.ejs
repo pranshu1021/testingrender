@@ -3,18 +3,24 @@
 
   <div class="navContent">
     <div class="logostuff">
-    <img class="logo noSelect" src="assets/logo.png">
-    <h1>AnswerNest</h1>
+    <a href="/"><img class="logo noSelect" src="assets/logo.png">
+    <h1>AnswerNest</h1></a>
     </div>
-          <!-- <div class="profile-container">
-        <p>Not Signed in</p>
-      </div>  -->
+      <% if(user) {%>
+        <div class="profilebox">
+          <img src="<%=user.profileurl%>">
+          <p><%=user.name%></p>
+          <button class="navMenubtn logout"><a  href = "/logout">Logout</a></button>
+        </div>
+        <% } else { %>
     <div class="navbuttonContainer">
       <% if(page == "home"){ %>
         <a class="navbtn" href="/login">Login</a>
       <a class="navbtn" href="/sign-up">Sign Up</a>
       <a class="navbtn" href="/sign-up">DevBlog</a>
         <% } %>
+    </div>
+  <% } %>
     </div>
   </div>
 </nav>

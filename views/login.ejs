@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("partials/head") %>
+
+    <body>
+        <%- include("partials/navbar") %>
+            <div class="signup-card">
+                <h1>Login and Become a Part of the Nest...</h1>
+                <div class="signup-content">
+                    <form action="/login" method="POST">
+
+                        <div class="form-grp">
+                            <label for="name">Enter Your Username/ Email</label>
+                            <input type="text" placeholder="Enter Your Name" id="username" name="username" required>
+                        </div>
+
+                        <div class="form-grp">
+                            <label for="password">Enter Your Password</label>
+                            <input type="password" placeholder="Enter your password" id="password" name="password"
+                                required>
+                        </div>
+
+                        <button class="navMenubtn register">Login</button>
+
+                    </form>
+                </div>
+            </div>
+    </body>
+
+</html>

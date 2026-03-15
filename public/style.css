@@ -124,9 +124,9 @@ justify-content: center;
 
 }
 .navMenubtn a{
- text-decoration: none;
- color: #23272C;
- 
+text-decoration: none;
+color: #23272C;
+
 }
 .navMenubtn:hover{
     background-color: rgb(189,189,152);

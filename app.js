@@ -51,7 +51,6 @@ app.get("/sign-up",(req,res)=>{
 app.post("/sign-up",async (req,res)=>{
     let{name,username,email,dob,password,bio,profileurl,country}=req.body;
     let hashedPassword = await bcrypt.hash(password,10);
-    console.log(hashedPassword)
     let birth = new Date(dob);
     let today= new Date();
     let age = today.getFullYear()-birth.getFullYear();
@@ -86,13 +85,30 @@ app.post("/login",(req,res)=>{
             return res.render("login",{error:"You entered wrong username/ email or password.",page:"home"});
         }
         req.session.user = user;
-        console.log(req.session.user)
         res.redirect("/")
     })
 })
 app.get("/ask-a-question",(req,res)=>{
-    res.render("askquestion")
+    res.render("askquestion",{page:"home"});
+});
+
+app.post("/dashboard",(req,res)=>{
+    let {title,description,tags}=req.body;
+    let user_id=  req.session.user.id;
+    console.log(req.body);
+    let id=uuid4();
+    console.log(`${title},${description},${tags},${user_id},${id}`);
+    let q="insert into questions (id,user_id,title,description) values (?,?,?,?)";
+    db.query(q,[id,user_id,title,description],(err,result)=>{
+        if(err) throw err;
+   
+     console.log(result);
+            res.send("your data is added");
+      
+    })
+   
 })
+
 app.get("/guidelines", (req,res)=>{
     res.render("guidelines",{
         page: "home"

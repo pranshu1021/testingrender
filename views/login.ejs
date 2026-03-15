@@ -5,10 +5,13 @@
     <body>
         <%- include("partials/navbar") %>
             <div class="signup-card">
+
                 <h1>Login and Become a Part of the Nest...</h1>
                 <div class="signup-content">
                     <form action="/login" method="POST">
-
+                        <% if(typeof(error) !== "undefined"){ %>
+                            <p style="color: red;"><%= error %></p>
+                            <% } %>
                         <div class="form-grp">
                             <label for="name">Enter Your Username/ Email</label>
                             <input type="text" placeholder="Enter Your Name" id="username" name="username" required>

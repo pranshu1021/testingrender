@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("partials/head") %>
+
+    <body>
+        <%- include("partials/navbar") %>
+            <%- include("partials/navmenu") %>
+                <hr>
+                <div class="searchbox">
+                    <label>Enter What You Want To Know...</label>
+                    <input class="search" type="text" placeholder="Search For Questions"
+                        name="search"></input><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            fill="currentColor" viewBox="0 0 24 24">
+                            <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+                            <path
+                                d="m17.06 14.94-2.8-1.34A6.96 6.96 0 0 0 16 9c0-3.86-3.14-7-7-7S2 5.14 2 9s3.14 7 7 7c1.76 0 3.37-.66 4.6-1.74l1.34 2.8 5 5 2.12-2.12zM9 14c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5">
+                            </path>
+                        </svg></button>
+
+                </div>
+                <hr>
+                
+                <div class="signup-card">
+                    <h2>Provide the details below to post your question.</h2>
+                    <div class="signup-content">
+                       
+                            <form action="/dashboard" method="POST">
+
+                                <div class="form-grp">
+                                    <label for="name">What Should Be the Title of Your Question?</label>
+                                    <input type="text" placeholder="Enter Best Suitable Title for Your Question"
+                                        id="title" name="title" required>
+                                </div>
+
+                                <div class="form-grp">
+                                    <label for="description">Describe your question clearly so the community can help
+                                        you better.</label>
+                                    <textarea class="description" maxlength="500"
+                                        placeholder="Explain your problem, what you tried, and what result you expected."></textarea>
+                                    
+                                    <label for="tags">Tags</label>
+                                    <input type="text" id="tags" name="tags"
+                                        placeholder="Add tags (e.g., javascript, nodejs, mysql)">
+
+                                    <small>Add up to 5 tags to describe what your question is about.</small>
+
+                                </div>
+
+                                <button class="navMenubtn register">Post Question</button>
+                            </form>
+                     
+                    </div>
+                </div>
+
+
+    </body>
+
+</html>

@@ -8,74 +8,80 @@
                 <h1>Register Yourself, Enjoy</h1>
                 <div class="signup-content">
                     <form action="/sign-up" method="POST">
+                        <% if(typeof(error) !=="undefined" ){ %>
+                            <p style="color: red;">
+                                <%= error %>
+                            </p>
+                            <% } %>
+                                <div class="form-grp">
+                                    <label for="name">Enter Your Beautiful Name</label>
+                                    <input type="text" placeholder="Enter Your Name" id="name" name="name" required>
+                                </div>
 
-                        <div class="form-grp">
-                            <label for="name">Enter Your Beautiful Name</label>
-                            <input type="text" placeholder="Enter Your Name" id="name" name="name" required>
-                        </div>
+                                <div class="form-grp">
+                                    <label for="username">Enter the username (everyone can see)</label>
+                                    <input type="text" placeholder="Enter Username" id="username" name="username"
+                                        required>
+                                </div>
 
-                        <div class="form-grp">
-                            <label for="username">Enter the username (everyone can see)</label>
-                            <input type="text" placeholder="Enter Username" id="username" name="username" required>
-                        </div>
+                                <div class="form-grp">
+                                    <label for="email">Enter Your Email Please</label>
+                                    <input type="text" placeholder="Enter Your Email" id="email" name="email" required>
+                                </div>
 
-                        <div class="form-grp">
-                            <label for="email">Enter Your Email Please</label>
-                            <input type="text" placeholder="Enter Your Email" id="email" name="email" required>
-                        </div>
+                                <div class="form-grp">
+                                    <label for="gender">Gender:</label>
+                                    <select name="gender" id="gender">
+                                        <option value="other">Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
 
-                        <div class="form-grp">
-                            <label for="gender">Gender:</label>
-                            <select name="gender" id="gender">
-                                <option value="other">Select Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
+                                <div class="form-grp">
+                                    <label for="dob">Select Your Date of Birth</label>
+                                    <input type="text" id="dob" name="dob">
+                                </div>
 
-                        <div class="form-grp">
-                            <label for="dob">Select Your Date of Birth</label>
-                            <input type="text" id="dob" name="dob">
-                        </div>
+                                <div class="form-grp">
+                                    <label for="password">Set Your Most Secret Password</label>
+                                    <input type="password" placeholder="Enter your password" id="password"
+                                        name="password" required>
+                                </div>
 
-                        <div class="form-grp">
-                            <label for="password">Set Your Most Secret Password</label>
-                            <input type="password" placeholder="Enter your password" id="password" name="password"
-                                required>
-                        </div>
-
-                        <div class="form-grp">
-                            <label for="bio">What explains you the best? Count:<span id="count">0</span></label>
-                            <textarea name="bio" maxlength="300" id="bio"
-                                placeholder="Tell the community about yourself, your skills, interests, or what topics you love answers. (max 300 characters)">
+                                <div class="form-grp">
+                                    <label for="bio">What explains you the best? Count:<span id="count">0</span></label>
+                                    <textarea name="bio" maxlength="300" id="bio"
+                                        placeholder="Tell the community about yourself, your skills, interests, or what topics you love answers. (max 300 characters)">
 </textarea>
-                        </div>
+                                </div>
 
-                        <div class="form-grp">
-                            <label for="profileurl">Paste the link of the image you would like as profile
-                                picture</label>
-                            <input type="text" placeholder="Enter the image url" id="profileurl" name="profileurl">
-                        </div>
+                                <div class="form-grp">
+                                    <label for="profileurl">Paste the link of the image you would like as profile
+                                        picture</label>
+                                    <input type="text" placeholder="Enter the image url" id="profileurl"
+                                        name="profileurl">
+                                </div>
 
-                        <div class="form-grp">
-                            <label for="country">Select Your Country</label>
-                            <select id="country" name="country">
-                                <option value="">Select your country</option>
-                            </select>
-                        </div>
+                                <div class="form-grp">
+                                    <label for="country">Select Your Country</label>
+                                    <select id="country" name="country">
+                                        <option value="">Select your country</option>
+                                    </select>
+                                </div>
 
-                        <button class="navMenubtn register">Register</button>
+                                <button class="navMenubtn register">Register</button>
 
                     </form>
                 </div>
             </div>
             <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
             <script>
-                let bio= document.getElementById("bio");
-                let count=0;
-                bio.addEventListener("input",function(){
-                    count = bio.value.length ;
+                let bio = document.getElementById("bio");
+                let count = 0;
+                bio.addEventListener("input", function () {
+                    count = bio.value.length;
                 });
                 fetch("https://restcountries.com/v3.1/all?fields=name").then(res => res.json()).then(data => {
                     let select = document.getElementById("country");
@@ -92,6 +98,11 @@
                     dateFormat: "Y-m-d",
                     maxDate: "today"
                 });
+                if (typeof (error) !== "undefined") {
+                    document.querySelectorAll(".form-grp").forEach(el => {
+                        el.style.display = "none";
+                    });
+                }
 
             </script>
     </body>

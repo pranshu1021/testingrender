@@ -8,9 +8,10 @@ table,td,th{
     border: solid 2px black;
 }
 
-h1{
+h1, h2{
     color:rgb(233, 233, 199)
 }
+
 
 
 /* NAVBAR CSS */
@@ -112,12 +113,20 @@ nav h1{
     border-radius: 6px;
     font-weight: 600;
     transition: 0.2s;
-    font-size: 18px;
-    min-width: 180px;
+    font-size: 16px;
+    min-width: 120px;
+
+display:flex;
+align-items:center;
+gap:6px;
+text-decoration:none;
+justify-content: center;
+
 }
 .navMenubtn a{
  text-decoration: none;
  color: #23272C;
+ 
 }
 .navMenubtn:hover{
     background-color: rgb(189,189,152);
@@ -142,7 +151,10 @@ gap:8px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 50%;
+max-width:800px;
+width:90%;
+
+
     margin:5% auto;
     padding:20px;
     font-size: 25px;
@@ -150,6 +162,7 @@ gap:8px;
     border-color: rgb(189,189,152);
     border-radius:12px;
 box-shadow:0 0 20px rgba(0,0,0,0.5);
+
 }
 .form-grp select{
     background-color: #1b1b1b;
@@ -223,4 +236,76 @@ box-shadow:0 0 8px rgba(255,215,0,0.4);
     color: rgb(189,189,152);
     font-size: 23px;
     font-weight: 800;
+}
+
+/* HOME PAGE CSS*/
+.searchbox{
+    margin-left: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 25px;
+}
+.searchbox label{
+    font-size: 20px;
+    color: rgb(189,189,152);
+}
+.searchbox input{
+    font-size: 18px;
+    background-color: transparent;
+    border: 2px solid rgb(189,189,152) ;
+    border-radius: 20px;
+    padding: 5px 5px;
+    color: white;
+    width: 500px;
+}
+.searchbox button{
+    background-color: transparent;
+    color: rgb(189,189,152);
+    border: 2px solid gray;
+    border-radius: 100%;
+    padding: 4px;
+    height: 40px;
+    width: 40px;
+}
+.searchbox button:hover{
+    background-color: rgb(189,189,152);;
+    color: #23272C;
+    border: 2px solid gray;
+    border-radius: 100%;
+    padding: 4px;
+    transition: 0.3s;
+}
+.left{
+    display:flex;
+    flex-direction:row;
+    gap:10px;        /* buttons ke beech spacing */
+    flex-wrap:wrap;  /* agar screen choti ho to next line me chale jaye */
+}
+.navMenubtn:link,
+.navMenubtn:visited{
+    color: black;
+    text-decoration: none;
+}
+.navMenubtn:hover{
+    cursor:pointer;
+    filter: brightness(0.95);
+}
+/* ASK A QUESTION CSS*/
+.description{
+    min-width: auto;
+min-height:150px;
+resize:vertical;
+}
+.signup-content input, .signup-content textarea{
+    width: 100%;
+    box-sizing: border-box;
+}
+.intro{
+    color: white;
+    font-size: 23px;
+}
+
+section p, section li{
+    color: white;
 }

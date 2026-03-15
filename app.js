@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql2");
 const path= require("path");
-const port = process.env.MYSQLPORT;
+const port = process.env.PORT;
 const bcrypt = require("bcrypt");
 const session = require("express-session");
 const {v4:uuid4}= require("uuid");
@@ -25,22 +25,36 @@ app.use((req,res,next)=>{
     next();
 });
 
+function requireLogin(req,res,next){
+    if(!req.session.user){
+        return res.redirect("/login");
+    }
+    next();
+}
 const db = mysql.createConnection({
     host: process.env.MYSQLHOST,
     user: process.env.MYSQLUSER,
     password: process.env.MYSQLPASSWORD,
     database: process.env.MYSQLDATABASE,
     port: process.env.MYSQLPORT
-});
+}).promise();
 
-app.get("/", (req, res) => {
-    db.query("SELECT * FROM users", (err, result) => {
-        if (err) {
-            console.log(err);
-            return res.send("Database error");
-        }
-        res.render("home.ejs", {result,page:"home"});
-    });
+app.get("/", async (req, res) => {
+    try{
+
+        const [questions] = await db.query(
+            "SELECT id,asked_at, title FROM questions ORDER BY id DESC LIMIT 5"
+        );
+
+        res.render("home.ejs", {
+            page:"home",
+            questions
+        });
+
+    }catch(err){
+        console.log(err);
+        res.send("Database error");
+    }
 });
 
 app.get("/sign-up",(req,res)=>{
@@ -59,54 +73,84 @@ app.post("/sign-up",async (req,res)=>{
         return res.render("signup",{error:"You have to be 13+ to make an account on AnswerNest, Come back when you're 13 or 13+.",page:"home"})
     }
     let sql= "INSERT INTO users(id,name,username,email,dob,password,bio,profileurl,country) VALUES (?,?,?,?,?,?,?,?,?)"; 
-        db.query(sql,[id,name,username,email,dob,hashedPassword,bio,profileurl,country],(err,result)=>{
-            if(err) throw err;
-            res.send("You're Registered and added to our Sweet Database.")
-        })})
+        await db.query(sql,[id,name,username,email,dob,hashedPassword,bio,profileurl,country]);
+res.send("You're Registered and added to our Sweet Database.");
+})
 
 app.get("/post-question",(req,res)=>{
-    app.render("dashboard");
+    res.render("askquestion",{page:"home"});
 })
 
 //LOGIN SYSTEM
 app.get("/login",(req,res)=>{
     res.render("login",{page:"signup"})
 })
-app.post("/login",(req,res)=>{
-    let{username,password} = req.body;
+app.post("/login", async (req,res)=>{
+    let {username,password} = req.body;
+
     let sql = `SELECT * FROM users WHERE username=? OR email=?`;
-    db.query(sql,[username,username], async(err,result)=>{
-        if(result.length==0){
-            return res.send("User Not Found");
-        }
-        let user = result[0]
-        let match = await bcrypt.compare(password,user.password);
-        if(!match){
-            return res.render("login",{error:"You entered wrong username/ email or password.",page:"home"});
-        }
-        req.session.user = user;
-        res.redirect("/")
-    })
-})
-app.get("/ask-a-question",(req,res)=>{
+    const [result] = await db.query(sql,[username,username]);
+
+    if(result.length==0){
+        return res.send("User Not Found");
+    }
+
+    let user = result[0];
+    let match = await bcrypt.compare(password,user.password);
+
+    if(!match){
+        return res.render("login",{error:"Wrong username/email or password",page:"home"});
+    }
+
+    req.session.user = user;
+    res.redirect("/");
+});
+app.get("/ask-a-question",requireLogin,(req,res)=>{
     res.render("askquestion",{page:"home"});
 });
 
-app.post("/dashboard",(req,res)=>{
+app.post("/questions",requireLogin,async (req,res)=>{
     let {title,description,tags}=req.body;
     let user_id=  req.session.user.id;
+    let tagsarr=tags.split(",");
+    // let placeholder = "?"
+//     let placeholders = tagsarr.map(()=> "(?)").join(",");
     console.log(req.body);
-    let id=uuid4();
-    console.log(`${title},${description},${tags},${user_id},${id}`);
-    let q="insert into questions (id,user_id,title,description) values (?,?,?,?)";
-    db.query(q,[id,user_id,title,description],(err,result)=>{
-        if(err) throw err;
-   
-     console.log(result);
-            res.send("your data is added");
-      
-    })
-   
+    let question_id=uuid4();
+
+
+    await db.query(
+        "INSERT INTO questions (id,user_id,title,description) VALUES (?,?,?,?)",
+        [question_id,user_id,title,description]
+    );
+
+    for(let tag of tagsarr){
+        tag = tag.trim().toLowerCase();
+
+        const [existing] = await db.query(
+            "SELECT id FROM tags WHERE name = ?",
+            [tag]
+        );
+
+        let tagId;
+
+        if(existing.length === 0){
+            const [newTag] = await db.query(
+                "INSERT INTO tags (name) VALUES (?)",
+                [tag]
+            );
+            tagId = newTag.insertId;
+        } else {
+            tagId = existing[0].id;
+        }
+
+        await db.query(
+            "INSERT INTO question_tags (question_id, tag_id) VALUES (?, ?)",
+            [question_id, tagId]
+        );
+    }
+
+    res.redirect("/dashboard");
 })
 
 app.get("/guidelines", (req,res)=>{
@@ -118,6 +162,30 @@ app.get("/logout",(req,res)=>{
     req.session.destroy();
     res.redirect("/login");
 })
+
+app.get("/dashboard", requireLogin, async (req,res)=>{
+
+    let userId = req.session.user.id;
+
+    const [questions] = await db.query(`
+        SELECT q.id, q.title, q.description,
+        GROUP_CONCAT(t.name) as tags
+        FROM questions q
+        LEFT JOIN question_tags qt ON q.id = qt.question_id
+        LEFT JOIN tags t ON qt.tag_id = t.id
+        WHERE q.user_id = ?
+        GROUP BY q.id
+        ORDER BY q.id DESC
+    `,[userId]);
+
+    res.render("dashboard",{
+        questions,
+        page:"dashboard"
+    });
+
+});
+
+
 
 app.listen(port,()=>{
     console.log(`listening to port ${port}`);

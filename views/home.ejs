@@ -1,47 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include("partials/head") %>
-    <body>
-    <%- include("partials/navbar") %>
-    <%- include("partials/navmenu") %>
-    <hr>
-    <div class="searchbox">
-    <label>Enter What You Want To Know...</label>
-        <input class="search" type="text" placeholder="Search For Questions" name="search"></input><button><svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  
-fill="currentColor" viewBox="0 0 24 24" >
-<!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
-<path d="m17.06 14.94-2.8-1.34A6.96 6.96 0 0 0 16 9c0-3.86-3.14-7-7-7S2 5.14 2 9s3.14 7 7 7c1.76 0 3.37-.66 4.6-1.74l1.34 2.8 5 5 2.12-2.12zM9 14c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5"></path>
-</svg></button>
 
-        </div>
-        <hr>
+<body>
 
-    <table>
-        <tr>
-        <th>
-            id
-        </th>
-        <th>
-            Username
-        </th>
-        </tr>
-        
-            <% for( user of result) { %>
-                <tr>
-                <td>
-                    <%= user.id %>
-                </td>
-                <td>
-                    <%= user.username %>
-                </td>
-                <td>
-                    <%= user.age %>
-                </td>
-                </tr>
-            <%   }%>
-    </table>
-        <form method="get" action="/">
-        <button>Back to HomePage</button>
-    </form>
+<%- include("partials/navbar") %>
+<%- include("partials/navmenu") %>
+
+<hr>
+
+<div class="searchbox">
+<label>Enter What You Want To Know...</label>
+
+<input class="search" type="text" placeholder="Search For Questions" name="search">
+
+<button>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+fill="currentColor" viewBox="0 0 24 24">
+<path d="m17.06 14.94-2.8-1.34A6.96 6.96 0 0 0 16 9c0-3.86-3.14-7-7-7S2
+5.14 2 9s3.14 7 7 7c1.76 0 3.37-.66 4.6-1.74l1.34 2.8 5 5 2.12-2.12zM9
+14c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5"></path>
+</svg>
+</button>
+
+</div>
+
+<hr>
+
+<div class="page-layout">
+
+
+
+<main>
+
+<h2 class="section-title">Recent Questions</h2>
+
+<% questions.forEach(q => { %>
+
+<div class="question-card">
+
+<a href="/questions/<%= q.id %>" class="question-title">
+<%= q.title %>
+</a>
+
+<div class="question-meta">
+Posted on <%= new Date(q.created_at).toDateString() %>
+</div>
+
+</div>
+
+<% }) %>
+
+</main>
+
+
+
+
+<aside>
+
+<a href="/ask-a-question" class="ask-btn">
+Ask a Question
+</a>
+
+
+<div class="sidebar-box">
+
+<h3>Popular Tags</h3>
+
+<div class="tag-list">
+<span class="tag">javascript</span>
+<span class="tag">nodejs</span>
+<span class="tag">mysql</span>
+<span class="tag">css</span>
+<span class="tag">react</span>
+</div>
+
+</div>
+
+
+<div class="sidebar-box">
+
+<h3>Community Stats</h3>
+
+<p>Questions: 124</p>
+<p>Users: 48</p>
+<p>Tags: 22</p>
+
+</div>
+
+
+<div class="sidebar-box">
+
+<h3>Guidelines</h3>
+
+<ul>
+<li>Ask clear questions</li>
+<li>Provide details</li>
+<li>Respect others</li>
+<li>No spam</li>
+</ul>
+
+<a href="/guidelines">Read Full Guidelines</a>
+
+</div>
+
+</aside>
+
+</div>
+
 </body>
 </html>

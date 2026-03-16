@@ -74,7 +74,7 @@ app.post("/sign-up",async (req,res)=>{
     }
     let sql= "INSERT INTO users(id,name,username,email,dob,password,bio,profileurl,country) VALUES (?,?,?,?,?,?,?,?,?)"; 
         await db.query(sql,[id,name,username,email,dob,hashedPassword,bio,profileurl,country]);
-res.send("You're Registered and added to our Sweet Database.");
+res.render("home");
 })
 
 app.get("/post-question",(req,res)=>{
@@ -92,7 +92,7 @@ app.post("/login", async (req,res)=>{
     const [result] = await db.query(sql,[username,username]);
 
     if(result.length==0){
-        return res.send("User Not Found");
+        return res.render("login",{error:"No such User exists",page:"home"});
     }
 
     let user = result[0];
@@ -148,6 +148,7 @@ app.post("/questions",requireLogin,async (req,res)=>{
             "INSERT INTO question_tags (question_id, tag_id) VALUES (?, ?)",
             [question_id, tagId]
         );
+        
     }
 
     res.redirect("/dashboard");

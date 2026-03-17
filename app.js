@@ -74,7 +74,7 @@ app.post("/sign-up",async (req,res)=>{
     }
     let sql= "INSERT INTO users(id,name,username,email,dob,password,bio,profileurl,country) VALUES (?,?,?,?,?,?,?,?,?)"; 
         await db.query(sql,[id,name,username,email,dob,hashedPassword,bio,profileurl,country]);
-res.render("home");
+res.render("home",{page:"home"});
 })
 
 app.get("/post-question",(req,res)=>{

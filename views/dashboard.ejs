@@ -41,21 +41,14 @@
         <h2>Your Questions</h2>
 
         <% if(questions.length === 0){ %>
-
             <p class="intro">You haven't asked any questions yet.</p>
-
         <% } %>
-
         <% questions.forEach(q => { %>
-
             <div class="question-card">
-
                 <h3><%= q.title %></h3>
-
                 <p>
                     <%= q.description.substring(0,150) %>...
                 </p>
-
                 <div class="tag-container">
 
                     <% if(q.tags){ %>

@@ -163,7 +163,7 @@ app.post("/questions",requireLogin,async (req,res)=>{
         
     }
 
-    res.redirect("/dashboard");
+    res.redirect("/dashboard",{page:"home"});
 })
 
 app.get("/guidelines", (req,res)=>{
@@ -193,7 +193,7 @@ app.get("/dashboard", requireLogin, async (req,res)=>{
 
     res.render("dashboard",{
         questions,
-        page:"dashboard"
+        page:"home"
     });
 
 });

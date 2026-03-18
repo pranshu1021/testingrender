@@ -97,6 +97,20 @@ Ask a Question
 </aside>
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const error= params.get("error");
 
+    if(error === "unauthorized"){
+        Swal.fire({
+    title: 'Oops',
+    text: "You're not allowed to do that!",
+    icon: 'error',
+    confirmButtonText: 'Cool'
+});
+window.history.replaceState({},document.title,"dashboard")
+    }
+</script>
 </body>
 </html>

@@ -84,9 +84,7 @@ app.post("/sign-up",async (req,res)=>{
         GROUP BY q.id
         ORDER BY q.id DESC
     `);
-res.render("home",{page:"home", questions});
-
-
+res.render("home",{page:"home", questions})
 })
 
 app.get("/post-question",(req,res)=>{
@@ -171,17 +169,37 @@ app.get("/guidelines", (req,res)=>{
         page: "home"
     });
 });
+
 app.get("/logout",(req,res)=>{
     req.session.destroy();
     res.redirect("/");
 })
 
+app.get("/dashboard/edit/:id",async (req,res)=>{
+    const {id} = req.params;
+    const [post] = await db.query("SELECT * FROM questions WHERE id=?",[id]);
+
+    res.render("edit",{post:post[0],page:"home"})
+})
+// user_id = 5, uuid  Q 127
+app.post("/dashboard/edit/:id", async(req,res)=>{
+    const {id} =req.params;
+    const {title,description} = req.body;
+    const [post] = await db.query("SELECT * FROM questions WHERE id=?",[id]);
+    if(post[0].user_id !== req.session.user.id){
+        
+        return res.redirect("home?error=unauthorized")
+    }
+    await db.query("UPDATE questions SET title=?,description=? WHERE id=?",[title,description,id]);
+    res.redirect("dashboard")
+
+})
 app.get("/dashboard", requireLogin, async (req,res)=>{
 
     let userId = req.session.user.id;
 
     const [questions] = await db.query(`
-        SELECT q.id, q.title, q.description,
+        SELECT q.id, q.title, q.descrip0tion,
         GROUP_CONCAT(t.name) as tags
         FROM questions q
         LEFT JOIN question_tags qt ON q.id = qt.question_id
@@ -195,10 +213,7 @@ app.get("/dashboard", requireLogin, async (req,res)=>{
         questions,
         page:"home"
     });
-
 });
-
-
 
 app.listen(port,()=>{
     console.log(`listening to port ${port}`);

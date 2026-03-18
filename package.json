@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "calerts": "^1.1.10",
     "dotenv": "^17.3.1",
     "ejs": "^5.0.1",
     "express": "^5.2.1",
@@ -8,6 +9,7 @@
     "multer": "^2.1.1",
     "mysql2": "^3.19.1",
     "path": "^0.12.7",
+    "sweetalert2": "^11.26.23",
     "uuid": "^13.0.0"
   },
   "name": "test",

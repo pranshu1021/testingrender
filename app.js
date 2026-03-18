@@ -173,7 +173,7 @@ app.get("/guidelines", (req,res)=>{
 });
 app.get("/logout",(req,res)=>{
     req.session.destroy();
-    res.redirect("/login");
+    res.redirect("/");
 })
 
 app.get("/dashboard", requireLogin, async (req,res)=>{

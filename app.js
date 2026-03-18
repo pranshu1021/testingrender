@@ -74,11 +74,23 @@ app.post("/sign-up",async (req,res)=>{
     }
     let sql= "INSERT INTO users(id,name,username,email,dob,password,bio,profileurl,country) VALUES (?,?,?,?,?,?,?,?,?)"; 
         await db.query(sql,[id,name,username,email,dob,hashedPassword,bio,profileurl,country]);
-res.render("home",{page:"home"});
+
+        const [questions] = await db.query(`
+        SELECT q.id, q.title, q.description,
+        GROUP_CONCAT(t.name) as tags
+        FROM questions q
+        LEFT JOIN question_tags qt ON q.id = qt.question_id
+        LEFT JOIN tags t ON qt.tag_id = t.id
+        GROUP BY q.id
+        ORDER BY q.id DESC
+    `);
+res.render("home",{page:"home", questions});
+
+
 })
 
 app.get("/post-question",(req,res)=>{
-    res.render("askquestion",{page:"home"});
+    res.render("askquestion",{page:"home" });
 })
 
 //LOGIN SYSTEM

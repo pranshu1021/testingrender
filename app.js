@@ -59,7 +59,11 @@ app.get("/", async (req, res) => {
 
 app.get("/sign-up",(req,res)=>{
     res.render("signup",{page:"signup"})
-})
+});
+
+app.get("/ourfeatures",(req,res)=>{
+    res.render("ourfeatures",{page:"home"});
+});
 
 // SIGN UP SYSTEM DONE 
 app.post("/sign-up",async (req,res)=>{

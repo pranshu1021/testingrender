@@ -198,7 +198,7 @@ app.post("/dashboard/edit/:id", async(req,res)=>{
 })
 
 app.get("/explore",async(req,res)=>{
-    const [questions]=await db.query("SELECT q.*, u.username FROM questions q JOIN users u ON q.user_id = u.id ORDER BY q.asked_at DESC");
+    const [questions]=await db.query("SELECT q.*, u.username,u.profileurl FROM questions q JOIN users u ON q.user_id = u.id ORDER BY q.asked_at DESC");
     res.render("explore", {questions,page:"home"})
 })
 app.get("/question/:id",async (req,res)=>{

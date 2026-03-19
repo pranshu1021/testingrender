@@ -8,10 +8,11 @@
 <%- include("partials/navbar") %>
 <%- include("partials/navmenu") %>
 <hr>
-
+<div class="question-box"> 
 <div class="question-container">
-    <h2><%=question.title%></h2>
-    <p><%= question.description%></p>
+    <p class="question-heading"><b>Q. <%=question.title%></b></p>
+    <p class="question-description"><%= question.description%></p>
+    
 </div>
 
 <form action="/answer" method="POST">
@@ -20,17 +21,23 @@
     <button>Answer</button>
 </form>
 
-<h3>ANSWERS</h3>
+</div>
+<div class="answer-box">
+<h3 >ANSWERS</h3>
+
 <% if(answers.length===0){%>
     <p>Not answered yet</p>
 <% } else{ %>
         <% answers.forEach(a => {%>
-            <div style ="border: solid 1px goldenrod; padding:10px; margin:10px;">
+            <div style ="border-radius:15px ;border: solid 1px #d4c88a; padding:10px; margin:10px;">
+                <div class="user-info">
                 <img src="<%=a.profileUrl%>" width="40" height="40" style="border-radius:100%">
-                <b><%= a.username %></b>
+                <b>@<%= a.username %></b>
+                </div>
                 <p><%= a.content %></p>
             </div>
         <%}); %>
 <% } %>
+</div>
 </body>
 </html>

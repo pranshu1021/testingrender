@@ -8,16 +8,24 @@
 <%- include("partials/navbar") %>
 <%- include("partials/navmenu") %>
 <hr>
+<p class="heading"><b>QUESTIONS</b></p>
 
-<h2> ALL Questions</h2>
+
 <% questions.forEach(q=>{ %>
-    <div>
+  
+    <a class="head-question" href="/question/<%=q.id%>">
+    <div class="explore-container">
         <h3> 
-            <a href="/question/<%=q.id%>"><%= q.title %></a>
+            <%= q.title %>
         </h3>
-        <p>Asked by <%= q.username %></p>
+        <div class="questioner">
+            <img src="<%= q.profileurl %>">
+            <p>Asked by <span class="username"><b>@<%= q.username %></b></span></p>
+        </div>
+        
     </div>
+    </a>
 <%})%>
-
+</div>
 </body>
 </html>

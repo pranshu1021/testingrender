@@ -936,7 +936,7 @@ justify-content: flex-start;
 
 }
 .mobile-menu-btn {
-    display: block;
+    display: none;
     background: #111;
     color: white;
     padding: 10px;

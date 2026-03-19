@@ -178,7 +178,7 @@ color: #23272C;
     align-items: center;   /* center vertically */
     justify-content: center;
 
-    
+
     text-decoration: none;
     color: black;
     cursor: pointer;
@@ -780,4 +780,154 @@ justify-content: flex-start;
     margin: 3% 5%;
     padding: 5px 10px;
     max-width: 100%;
+}
+/*======================================*/
+/* ========================= */
+/* 📱 MOBILE RESPONSIVE CSS */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+    /* NAVBAR */
+    .navContent{
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .logostuff{
+        justify-content: center;
+    }
+
+    .navbuttonContainer{
+        justify-content: center;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .navMenu{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .navMenubtn{
+        width: 90%;
+        font-size: 14px;
+    }
+
+    /* PROFILE BOX */
+    .profilebox{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profilebox p{
+        font-size: 18px;
+    }
+
+    /* SEARCH */
+    .searchbox{
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .searchbox input{
+        width: 90%;
+    }
+
+    /* PAGE LAYOUT */
+    .page-layout{
+        flex-direction: column;
+    }
+
+    main, aside{
+        width: 100%;
+    }
+
+    /* DASHBOARD */
+    .dashboard-container{
+        flex-direction: column;
+    }
+
+    .dashboard-aside{
+        width: 100%;
+    }
+
+    /* QUESTION CARD BUTTONS */
+    .dashboard-btns{
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    /* SIGNUP CARD */
+    .signup-card{
+        width: 95%;
+        font-size: 18px;
+        padding: 15px;
+    }
+
+    .form-grp input,
+    .form-grp textarea,
+    .form-grp select{
+        font-size: 16px;
+    }
+
+    /* QUESTION PAGE */
+    .question-box form textarea{
+        min-width: 100%;
+    }
+
+    /* EXPLORE */
+    .heading{
+        margin: 10px auto;
+        text-align: center;
+    }
+
+    .explore-container{
+        margin: 10px;
+    }
+
+    /* FOOTER */
+    footer{
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        text-align: center;
+    }
+
+}
+
+
+/* 📱 EXTRA SMALL DEVICES */
+@media (max-width: 480px){
+
+    h1{
+        font-size: 22px;
+    }
+
+    h2{
+        font-size: 18px;
+    }
+
+    .navMenubtn{
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .btn{
+        width: 100%;
+    }
+
+    .searchbox input{
+        width: 100%;
+    }
+
+    .profilebox img{
+        height: 60px;
+        width: 60px;
+    }
+
 }

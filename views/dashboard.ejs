@@ -1,45 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include("partials/head") %>
-
 <body>
-
 <%- include("partials/navbar") %>
 <%- include("partials/navmenu") %>
-
 <div class="dashboard-container">
-
     <!-- PROFILE ASIDE -->
     <aside class="dashboard-aside">
-
         <div class="profile-card">
-
             <img src="<%= user.profileurl %>" alt="profile">
-
             <div class="profile-name">
                 <%= user.username %>
             </div>
-
             <div class="profile-bio">
                 <%= user.bio || "No bio added yet." %>
             </div>
-
             <div class="profile-stats">
                 <p style="color:rgb(189,189,152)">
                     Questions asked: <%= questions.length %>
                 </p>
             </div>
-
         </div>
-
     </aside>
-
-
     <!-- MAIN QUESTIONS AREA -->
     <main class="dashboard-main">
-
         <h2>Your Questions</h2>
-
         <% if(questions.length === 0){ %>
             <p class="intro">You haven't asked any questions yet.</p>
         <% } %>
@@ -50,29 +35,21 @@
                     <%= q.description.substring(0,150) %>...
                 </p>
                 <div class="tag-container">
-
                     <% if(q.tags){ %>
-
                         <% q.tags.split(",").forEach(tag => { %>
-
                             <span class="tag"><%= tag %></span>
-
                         <% }) %>
-
                     <% } %>
-
                 </div>
                 <div class="dashboard-btns">
-                <a class="edit" href="/dashboard/edit/<%=q.id%>">Edit</a>
-                <a class="edit" href="/dashboard/edit/<%=q.id%>">Delete</a>
+                <a class="btn" href="/dashboard/edit/<%=q.id%>">Edit</a>
+                <form action="/dashboard/delete/<%=q.id%>" method="POST">
+                    <button class="btn" type="submit">Delete</button>
+                </form>
                 </div>
             </div>
-
         <% }) %>
-
     </main>
-
 </div>
-
 </body>
 </html>

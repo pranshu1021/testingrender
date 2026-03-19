@@ -133,14 +133,30 @@ justify-content: center;
     font-weight: 600;
     transition: 0.2s;
     font-size: 16px;
-    min-width: 90px;
+    width: 90px;
+    height: 34px;
 
 display:inline-flex;
 align-items:flex-end;
 gap:6px;
 text-decoration:none;
 justify-content: center;
-
+}
+.dashboard-btns a{
+    text-align: center;
+}
+.editt{
+    background-color: rgb(233,233,199);
+    height: 32px;
+    width: 90px;
+    border-radius: 6px;
+    border: 1px solid black;
+    font-weight: 800;
+    padding-top: 2px;
+}
+.editt:visited{
+    text-decoration: none;
+    color:black;
 }
 .edit:hover{
         background-color: rgb(189,189,152);
@@ -148,6 +164,28 @@ justify-content: center;
 .navMenubtn a{
 text-decoration: none;
 color: #23272C;
+}
+.btn {
+    background-color: rgb(233,233,199);
+    height: 34px;
+    width: 90px;
+    border-radius: 6px;
+    border: 1px solid black;
+    font-weight: 600;
+    font-size: 16px;
+
+    display: inline-flex;
+    align-items: center;   /* center vertically */
+    justify-content: center;
+
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    background-color: rgb(189,189,152);
 }
 .dashboard-btns{
     display: inline-flex;
@@ -159,50 +197,40 @@ color: #23272C;
     background-color: rgb(189,189,152);
     transform: translateY(-2px); /* thoda modern hover effect */
 }
-
 /* SIGNUP PAGE CSS */
 .form-grp{
     /* display: flex;
     justify-content: space-between;
     gap:100px */
-    
 display:flex;
 flex-direction:column;
 gap:8px;
-
 }
-
 .signup-card{
     background: linear-gradient(135deg,  rgb(27,27,27),rgb(46, 46, 39), rgb(44, 43, 43));
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-max-width:800px;
-width:90%;
-
-
+    max-width:800px;
+    width:90%;
     margin:5% auto;
     padding:20px;
     font-size: 25px;
     border: 5px solid ;
     border-color: rgb(189,189,152);
     border-radius:12px;
-box-shadow:0 0 20px rgba(0,0,0,0.5);
-
+    box-shadow:0 0 20px rgba(0,0,0,0.5);
 }
 .form-grp select{
     background-color: #1b1b1b;
     color: rgb(189,189,152);
     border:1px solid gold;
 }
-
 .form-grp option{
     background-color:#1b1b1b;
     color:rgb(189,189,152);
 }
-
-
 .signup-card form{
         display: flex;
     flex-direction: column;
@@ -216,7 +244,6 @@ margin-top:30px;
 align-self:center;
 font-size:18px;
 }
-
 .form-grp input,
 .form-grp select,
 .form-grp textarea{

@@ -221,12 +221,13 @@ app.post("/answer", async(req,res)=>{
 
 })
 
-// app.post("/dashboard/delete/:id",async (req,res)=>{
-//     const questionId = req.params.id;
-
-//     await db.query("DELETE FROM questions WHERE id = ?",[questionId]);
-//     res.redirect("/dashboard"); 
-// })
+app.post("/dashboard/delete/:id",async (req,res)=>{
+    const questionId = req.params.id;
+    await db.query("DELETE FROM question_tags WHERE question_id =?;",[questionId]);
+    await db.query("DELETE FROM question_tags WHERE question_id =?;",[questionId]);
+    await db.query("DELETE FROM questions WHERE id =?;",[questionId]);
+    res.redirect("/dashboard"); 
+})
 
 app.get("/dashboard", requireLogin, async (req,res)=>{
 

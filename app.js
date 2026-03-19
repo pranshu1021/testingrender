@@ -161,7 +161,7 @@ app.post("/questions",requireLogin,async (req,res)=>{
         
     }
 
-    res.redirect("/dashboard",{page:"home"});
+    res.redirect("/dashboard");
 })
 
 app.get("/guidelines", (req,res)=>{

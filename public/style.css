@@ -814,6 +814,7 @@ justify-content: flex-start;
 
     .navMenubtn{
         width: 90%;
+        margin:0px 12px;
         font-size: 14px;
     }
 
@@ -892,7 +893,7 @@ justify-content: flex-start;
 
     /* FOOTER */
     footer{
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         gap: 15px;
         text-align: center;

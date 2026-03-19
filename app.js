@@ -65,6 +65,10 @@ app.get("/ourfeatures",(req,res)=>{
     res.render("ourfeatures",{page:"home"});
 });
 
+app.get("/about",(req,res)=>{
+    res.render("about",{page:"home"});
+})
+
 // SIGN UP SYSTEM DONE 
 app.post("/sign-up",async (req,res)=>{
     let{name,username,email,dob,password,bio,profileurl,country}=req.body;

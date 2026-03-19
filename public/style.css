@@ -123,10 +123,37 @@ text-decoration:none;
 justify-content: center;
 
 }
+.question-card h3{
+    display: inline;
+}
+.edit{
+        background-color: rgb(233,233,199);
+    padding: 6px 6px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: 0.2s;
+    font-size: 16px;
+    min-width: 90px;
+
+display:inline-flex;
+align-items:flex-end;
+gap:6px;
+text-decoration:none;
+justify-content: center;
+
+}
+.edit:hover{
+        background-color: rgb(189,189,152);
+}
 .navMenubtn a{
 text-decoration: none;
 color: #23272C;
-
+}
+.dashboard-btns{
+    display: inline-flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: flex-end;
 }
 .navMenubtn:hover{
     background-color: rgb(189,189,152);

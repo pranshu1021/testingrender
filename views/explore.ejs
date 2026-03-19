@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<%- include("partials/head") %>
+
+<body>
+<%- include("partials/navbar") %>
+<%- include("partials/navmenu") %>
+<hr>
+
+<h2> ALL Questions</h2>
+<% questions.forEach(q=>{ %>
+    <div>
+        <h3> 
+            <a href="/question/<%=q.id%>"><%= q.title %></a>
+        </h3>
+        <p>Asked by <%= q.username %></p>
+    </div>
+<%})%>
+
+</body>
+</html>

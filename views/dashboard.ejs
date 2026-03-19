@@ -46,7 +46,6 @@
         <% questions.forEach(q => { %>
             <div class="question-card">
                 <h3><%= q.title %></h3>
-                <a href="/edit/<%=post.id%>">Edit</a>
                 <p>
                     <%= q.description.substring(0,150) %>...
                 </p>
@@ -63,7 +62,10 @@
                     <% } %>
 
                 </div>
-
+                <div class="dashboard-btns">
+                <a class="edit" href="/dashboard/edit/<%=q.id%>">Edit</a>
+                <a class="edit" href="/dashboard/edit/<%=q.id%>">Delete</a>
+                </div>
             </div>
 
         <% }) %>

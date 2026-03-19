@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<%- include("partials/head") %>
+
+<body>
+<%- include("partials/navbar") %>
+<%- include("partials/navmenu") %>
+<hr>
+
+<div class="question-container">
+    <h2><%=question.title%></h2>
+    <p><%= question.description%></p>
+</div>
+
+<form action="/answer" method="POST">
+    <input type="hidden" name="questionId" value="<%=question.id%>">
+    <textarea name="content" required></textarea>
+    <button>Answer</button>
+</form>
+
+<h3>ANSWERS</h3>
+<% if(answers.length===0){%>
+    <p>Not answered yet</p>
+<% } else{ %>
+        <% answers.forEach(a => {%>
+            <div style ="border: solid 1px goldenrod; padding:10px; margin:10px;">
+                <img src="<%=a.profileUrl%>" width="40" height="40" style="border-radius:100%">
+                <b><%= a.username %></b>
+                <p><%= a.content %></p>
+            </div>
+        <%}); %>
+<% } %>
+</body>
+</html>

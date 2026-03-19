@@ -178,7 +178,11 @@ app.get("/logout",(req,res)=>{
 app.get("/dashboard/edit/:id",async (req,res)=>{
     const {id} = req.params;
     const [post] = await db.query("SELECT * FROM questions WHERE id=?",[id]);
-
+    if(post.length === 0){
+        return res.redirect("/dashboard");
+    }
+    console.log("hello")
+    console.log("hello")
     res.render("edit",{post:post[0],page:"home"})
 })
 // user_id = 5, uuid  Q 127
@@ -187,19 +191,49 @@ app.post("/dashboard/edit/:id", async(req,res)=>{
     const {title,description} = req.body;
     const [post] = await db.query("SELECT * FROM questions WHERE id=?",[id]);
     if(post[0].user_id !== req.session.user.id){
-        
         return res.redirect("home?error=unauthorized")
     }
     await db.query("UPDATE questions SET title=?,description=? WHERE id=?",[title,description,id]);
     res.redirect("dashboard")
+})
+
+app.get("/explore",async(req,res)=>{
+    const [questions]=await db.query("SELECT q.*, u.username FROM questions q JOIN users u ON q.user_id = u.id ORDER BY q.asked_at DESC");
+    res.render("explore", {questions,page:"home"})
+})
+app.get("/question/:id",async (req,res)=>{
+    const questionId = req.params.id;
+    const [question] = await db.query("SELECT * FROM questions WHERE id=?",[questionId]);
+    const[answers] = await db.query(`SELECT a.*, u.username, u.profileUrl 
+                                        FROM answers a
+                                        JOIN users u ON a.user_id = u.id
+                                        WHERE a.id = ?
+                                        ORDER BY a.created_at DESC`,[questionId])
+    res.render("question",{question: question[0],answers,page:"home"})
+})
+
+app.post("/answer", async(req,res)=>{
+    const {content,questionId}= req.body;
+    const userId = req.session.user.id;
+
+    await db.query("INSERT INTO answers(content, user_id,id) VALUES (?,?,?)",[content,userId,questionId]);
+    res.redirect(`/question/${questionId}`);
 
 })
+
+// app.post("/dashboard/delete/:id",async (req,res)=>{
+//     const questionId = req.params.id;
+
+//     await db.query("DELETE FROM questions WHERE id = ?",[questionId]);
+//     res.redirect("/dashboard"); 
+// })
+
 app.get("/dashboard", requireLogin, async (req,res)=>{
 
     let userId = req.session.user.id;
 
     const [questions] = await db.query(`
-        SELECT q.id, q.title, q.descrip0tion,
+        SELECT q.id, q.title, q.description,
         GROUP_CONCAT(t.name) as tags
         FROM questions q
         LEFT JOIN question_tags qt ON q.id = qt.question_id
@@ -214,6 +248,7 @@ app.get("/dashboard", requireLogin, async (req,res)=>{
         page:"home"
     });
 });
+
 
 app.listen(port,()=>{
     console.log(`listening to port ${port}`);

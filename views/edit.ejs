@@ -8,41 +8,10 @@
 <%- include("partials/navmenu") %>
 
 <div class="dashboard-container">
-
-    <!-- PROFILE ASIDE -->
-    <aside class="dashboard-aside">
-
-        <div class="profile-card">
-
-            <img src="<%= user.profileurl %>" alt="profile">
-
-            <div class="profile-name">
-                <%= user.username %>
-            </div>
-
-            <div class="profile-bio">
-                <%= user.bio || "No bio added yet." %>
-            </div>
-
-            <div class="profile-stats">
-                <p style="color:rgb(189,189,152)">
-                    Questions asked: <%= questions.length %>
-                </p>
-            </div>
-
-        </div>
-
-    </aside>
-
-
     <!-- MAIN QUESTIONS AREA -->
     <main class="dashboard-main">
 
         <h2>Edit Your Question.</h2>
-
-        <% if(questions.length === 0){ %>
-            <p class="intro">You haven't asked any questions yet.</p>
-        <% } %>
                     <div class="signup-content">
                        
                             <form action="/dashboard/edit/<%=post.id%>" method="POST">
@@ -50,13 +19,13 @@
                                 <div class="form-grp">
                                     <label for="title">What Should Be the Title of Your Question?</label>
                                     <input type="text" placeholder="Enter Best Suitable Title for Your Question"
-                                        id="title" name="title" required><%=post.title%>"</input>
+                                        id="title" name="title" value="<%=post.title%>" required></input>
                                 </div>
 
                                 <div class="form-grp">
                                     <label for="description">Describe your question clearly so the community can help
                                         you better.</label>
-                                    <textarea class="description" maxlength="500"
+                                    <textarea class="description" maxlength="500" 
                                         placeholder="Explain your problem, what you tried, and what result you expected." name="description"><%=post.description%></textarea>
                                 </div>
 

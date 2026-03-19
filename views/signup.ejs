@@ -26,7 +26,8 @@
 
                                 <div class="form-grp">
                                     <label for="email">Enter Your Email Please</label>
-                                    <input type="text" placeholder="Enter Your Email" id="email" name="email" required>
+                                    <input type="email" placeholder="Enter Your Email" id="email" name="email" required>
+                                    <span id="emailError" style="color:red; font-size:12px;"></span>
                                 </div>
 
                                 <div class="form-grp">
@@ -78,6 +79,24 @@
             </div>
             <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
             <script>
+                let emailInput = document.getElementById("email");
+                let emailError = document.getElementById("emailError");
+
+                emailInput.addEventListener("input", function(){
+                    let email = emailInput.value;
+                    let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                    if (email == ""){
+                        emailError.textContent = "";
+
+                    }else if(!regex.test(email)){
+                        emailError.textContent="This email is not valid, Enter a valid email"
+                    } else{
+                        emailError.textContent = "Perfect! This email is valid.";
+                        emailError.style.color = "green";
+                    }
+                })
+
+
                 let bio = document.getElementById("bio");
                 let count = 0;
                 bio.addEventListener("input", function () {

@@ -935,3 +935,144 @@ justify-content: flex-start;
     }
 
 }
+.mobile-menu-btn {
+    display: block;
+    background: #111;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .navMenu {
+        display: none;
+        flex-direction: column;
+        background-color: #23272C;
+    }
+
+    .navMenu.active {
+        display: flex;
+    }
+
+    .left {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        
+    }
+
+    .navMenubtn {
+        padding: 10px;
+        border-bottom: 1px solid #444;
+        
+    }
+}
+
+
+/* FOOOOTERRR*/
+footer {
+    background-color: #1c1f24;
+    color: #ede59f;
+    padding: 30px 20px;
+    border-top: 2px solid #444;
+}
+
+/* Layout */
+.footer-left {
+    display: flex;
+    gap: 60px;
+}
+
+.footer-right {
+    margin-top: 20px;
+}
+
+/* Links section */
+.routes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.routes-links a {
+    color: #ede59f;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.routes-links a:hover {
+    color: gold;
+    transform: translateX(5px);
+}
+
+/* Social links */
+#social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+#social-links a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: #ede59f;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+#social-links a:hover {
+    color: gold;
+    transform: scale(1.05);
+}
+
+/* About text */
+#about-us p {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+/* 🔥 DESKTOP STRUCTURE */
+footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* 📱 MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-left {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .routes {
+        align-items: center;
+    }
+
+    .footer-right {
+        margin-top: 25px;
+    }
+
+    #social-links {
+        justify-content: center;
+    }
+}

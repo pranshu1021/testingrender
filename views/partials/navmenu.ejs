@@ -1,4 +1,8 @@
-<div class="navMenu">
+
+<div class="mobile-menu-btn" onclick="toggleMenu()">
+    ☰ MENU
+</div>
+<div class="navMenu" id="navMenu">
 <div class="left">
 
 <a href="/" class="navMenubtn">
@@ -69,3 +73,9 @@ HELP
 
 </div>
 </div>
+<script>
+function toggleMenu() {
+    const menu = document.getElementById("navMenu");
+    menu.classList.toggle("active");
+}
+</script>

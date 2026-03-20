@@ -228,7 +228,9 @@ app.post("/answer", async(req,res)=>{
     res.redirect(`/question/${questionId}`);
 
 })
-
+app.get("/help",(req,res)=>{
+    res.render("help",{page:"home"})
+})
 app.post("/dashboard/delete/:id",async (req,res)=>{
     const questionId = req.params.id;
     await db.query("DELETE FROM question_tags WHERE question_id =?;",[questionId]);
